@@ -4,6 +4,9 @@ import java.util.*;
 
 public class Farmacia { 
 	
+	List<Produto> produtos = new ArrayList<Produto>();
+	
+	
 public static void criarProduto(List<Produto> produtos) {
 		
 		Scanner ler = new Scanner(System.in);
@@ -34,13 +37,11 @@ public static void criarProduto(List<Produto> produtos) {
 			
 			ler.nextLine();
 			
-			System.out.println("Digite o tipo do medicamento");
+			System.out.println("Digite a forma do medicamento");
 			
-			String tipo = ler.nextLine();
+			String forma = ler.nextLine();
 			
 			generico.setNome(nome);
-			
-			generico.setTipo(tipo);
 			
 			generico.setValor(valor);
 			
@@ -48,24 +49,28 @@ public static void criarProduto(List<Produto> produtos) {
 			
 			generico.setFabricante(fabricante);
 			
+			generico.setForma(forma);
+			
 			produtos.add(generico);
-			
-			
 			
 		}
 		else if(tipo_produto.equals("Cosmeticos")) {
 			
 			Cosmeticos generico = new Cosmeticos();
 			
-			System.out.println("Digite o nome do Cosmetico");
+			System.out.println("Digite o nome do cosmetico");
 			
 			String nome = ler.nextLine();
 			
-			System.out.println("Digite o valor do Cosmetico");
+			System.out.println("Digite o valor do cosmetico");
 			
 			double valor = ler.nextDouble();
 			
 			ler.nextLine();
+			
+			System.out.println("Digite o tipo do cosmetico");
+			
+			String tipo = ler.nextLine();
 			
 			generico.setNome(nome);
 			
@@ -75,32 +80,32 @@ public static void criarProduto(List<Produto> produtos) {
 			
 			generico.setFabricante(fabricante);
 			
+			generico.setTipo(tipo);
+			
 			produtos.add(generico);
 			
-		}
-		
-		
+		}		
 	}
 	
 	public static void listarProduto(List<Produto> produtos) {
 		
 		for(int i = 0; i<produtos.size(); i++) {
-			System.out.println(produtos.get(i).getFabricante());
-			System.out.println(produtos.get(i).getCodigoBarras());
-			
 			if(produtos.get(i) instanceof Medicamentos) {
-				System.out.println(((Medicamentos) ((List<Produto>) produtos).get(i)).getNome());
-				System.out.println(((Medicamentos) ((List<Produto>) produtos).get(i)).getValor());
-				System.out.println(((Medicamentos) ((List<Produto>) produtos).get(i)).getTipo());
+				System.out.println(produtos.get(i).getFabricante());
+				System.out.println(produtos.get(i).getCodigoBarras());
+				System.out.println(produtos.get(i).getNome());
+				System.out.println(produtos.get(i).getValor());
+				System.out.println(((Medicamentos) produtos.get(i)).getForma());
 			}
 			else if(produtos.get(i) instanceof Cosmeticos) {
-				System.out.println(((Cosmeticos) ((List<Produto>) produtos).get(i)).getNome());
-				System.out.println(((Cosmeticos) ((List<Produto>) produtos).get(i)).getValor());
+				System.out.println(produtos.get(i).getFabricante());
+				System.out.println(produtos.get(i).getCodigoBarras());
+				System.out.println(produtos.get(i).getNome());
+				System.out.println(produtos.get(i).getValor());
+				System.out.println(((Cosmeticos) produtos.get(i)).getTipo());
 			}
-			
 		}
-	}
-	
+	}	
 	
 	public static void buscarProduto(List<Produto> produtos) {
 		Scanner ler = new Scanner(System.in);
@@ -110,62 +115,28 @@ public static void criarProduto(List<Produto> produtos) {
 		for(int i = 0; i<produtos.size(); i++) {
 			if(produtos.get(i) instanceof Medicamentos) {
 				if(nome.equals((((Medicamentos) ((List<Produto>) produtos).get(i)).getNome()))) {
-					
 					System.out.println(produtos.get(i).getFabricante());
 					System.out.println(produtos.get(i).getCodigoBarras());
-					
-					System.out.println(((Medicamentos) ((List<Produto>) produtos).get(i)).getNome());
-					System.out.println(((Medicamentos) ((List<Produto>) produtos).get(i)).getValor());
-					System.out.println(((Medicamentos) ((List<Produto>) produtos).get(i)).getTipo());
+					System.out.println(produtos.get(i).getNome());
+					System.out.println(produtos.get(i).getValor());
+					System.out.println(((Medicamentos) produtos.get(i)).getForma());
 
 				}
 
 			}
 			else if(produtos.get(i) instanceof Cosmeticos) {
 				if(nome.equals(((Cosmeticos) ((List<Produto>) produtos).get(i)).getNome())) {
-				
 					System.out.println(produtos.get(i).getFabricante());
-					
 					System.out.println(produtos.get(i).getCodigoBarras());
-					
-					System.out.println(((Cosmeticos) ((List<Produto>) produtos).get(i)).getNome());
-					
-					System.out.println(((Cosmeticos) ((List<Produto>) produtos).get(i)).getValor());
+					System.out.println(produtos.get(i).getNome());
+					System.out.println(produtos.get(i).getValor());
+					System.out.println(((Cosmeticos) produtos.get(i)).getTipo());
 				}
 				
 			}
 			
 		}
 
-		
 	}
-	
-	
-	
-	
-	
-	
-	public static void main(String[] args){
-		List<Produto> produtos = new ArrayList<Produto>();
-		Scanner ler = new Scanner(System.in);
-		
-		while(true) {
-		
-			System.out.println("1) cadastrar");
-			System.out.println("2) listar");
-			System.out.println("3) buscar produto");
-			
-			int opcao = ler.nextInt();
-			
-			if( opcao == 1 ) {
-				criarProduto(produtos);
-			}
-			else if( opcao == 2 ){
-				listarProduto(produtos);
-			}
-			else if( opcao == 3) {
-				buscarProduto(produtos);
-			}
-		}
-	}
+
 }
