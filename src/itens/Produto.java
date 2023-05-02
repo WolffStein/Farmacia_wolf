@@ -6,6 +6,11 @@ public abstract class Produto {
 	private String nome;
 	private double valor;
 
+	public Produto() {
+		super();
+	}
+	
+	
 	public String getNome() {
 		return nome;
 	}

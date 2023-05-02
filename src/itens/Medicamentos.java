@@ -2,9 +2,10 @@ package itens;
 
 class Medicamentos extends Produto {
 	private String forma;
-	private double valor;
-	private String tipo;
-	
+
+	public Medicamentos(){
+		super();	
+	}
 	
 	public String getForma() {
 		return forma;
